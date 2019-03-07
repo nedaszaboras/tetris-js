@@ -230,7 +230,6 @@ function gameLoop(timestamp) {
 var flag = true;
 function update() {
 
-  // -----------------------------------------------------------------//
   var newBlock = getNewBlock(randomBlock);
   var changedXPositions = [];
   var positionsPerRow = [];
@@ -240,7 +239,6 @@ function update() {
   for (let i = (newBlock.length / block.rows) - 1; i >= 0; i--) {
     for (let j = 0; j < block.rows; j++) {
       if (newBlock[i * block.rows + j] == 2) changedXPositions.push(j);
-      //console.log((i*4+j) +" : " +newBlock[i*4+j]);
     }
 
     if (i == (newBlock.length / block.rows) - 1) {
@@ -256,9 +254,6 @@ function update() {
     }
   }
 
-
-
-  // -----------------------------------------------------------------//
   var pY;
   var pX = posX;
   let lastY = posY + block.rows + 1
@@ -277,21 +272,6 @@ function update() {
         }
       }
 
-      /*
-      let firstY = posY + block.rows + 1 - getBlockRows(randomBlock);
-      let lastY= posY + block.rows + 1
-      console.log("firstY : " +firstY + " lastY : " + lastY);
-      for (lastY; lastY >= firstY; lastY--){
-      }*/
-
-      /*for (var i = 0; i < block.cols; i++) {
-        // console.log(" tile nr " + i + " : " + map.getTileNumber(posY + block.rows, pX))
-        //to check bottom position of the block and 1 step in advance;
-        if (map.getTile(posY + block.rows + 1, pX) == 2) {
-          flag = false;
-        }
-        pX++;
-      }*/
       posY += velocity;
     }
     else {
@@ -304,15 +284,12 @@ function update() {
       flag = true;
     }
   }
-  /*if (posY + block.rows < maxY) {
 
-    posY += velocity;
-  }*/
   else {
     putIntoMap(posY, posX, randomBlock);
     randomBlock = selectBlock();
     posY = 0;
-    posX = Math.floor(Math.random() * 9);
+    posX = Math.floor(Math.random() * 8);
     drawBlock(randomBlock, posX, posY);
     flag == true;
   }
